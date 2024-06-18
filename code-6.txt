@@ -1,0 +1,38 @@
+#include <iostream>
+#include <cstring>
+#include <cctype>
+
+bool isPalindrome(const char *str) {
+    int length = std::strlen(str);
+    int start = 0;
+    int end = length - 1;
+
+    while (end > start) {
+        while (!std::isalnum(str[start])) {
+            start++;
+        }
+        while (!std::isalnum(str[end])) {
+            end--;
+        }
+        if (std::tolower(str[start]) != std::tolower(str[end])) {
+            return false;
+        }
+        start++;
+        end--;
+    }
+    return true;
+}
+
+int main() {
+    char input[256];
+    std::cout << "Введите строку: ";
+    std::cin.getline(input, 256, '.');
+    
+    if (isPalindrome(input)) {
+        std::cout << "Это палиндром." << std::endl;
+    } else {
+        std::cout << "Это не палиндром." << std::endl;
+    }
+
+    return 0;
+}
